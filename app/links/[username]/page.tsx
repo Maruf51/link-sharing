@@ -2,7 +2,7 @@ import ViewLinks from '@/components/shared/view-links/ViewLinks';
 import { NextPage } from 'next'
 import { getServerSession } from 'next-auth';
 
-const base_url = process.env.BASE_URL;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface Props {
     params: {

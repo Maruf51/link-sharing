@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
-const base_url = process.env.BASE_URL
+const base_url = process.env.NEXT_PUBLIC_BASE_URL
 
 export const metadata = {
   title: 'Home | Link-Sharing',
