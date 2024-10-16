@@ -31,7 +31,7 @@ const fetchHandler = async (data: FetchType) => {
                 throw new Error(result.error?.message || result.error || 'Internal server error')
             }
         }
-    } catch (error: any) {
+    } catch (error) {
         toast.error(error.message || error || 'Internal server error')
         return { error: error.message || error || 'Internal server error', success: false }
     }

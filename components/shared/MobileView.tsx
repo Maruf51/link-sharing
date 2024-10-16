@@ -1,4 +1,4 @@
-import { UserTypes } from '@/types/types'
+import { LinkTypes, UserTypes } from '@/types/types'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import userImage from '@/images/user.png'
@@ -7,7 +7,7 @@ import LinkView from './LinkView'
 
 interface Props {
     userData: UserTypes,
-    addedLinks: any
+    addedLinks: LinkTypes[]
 }
 
 const MobileView: NextPage<Props> = ({ userData, addedLinks }) => {

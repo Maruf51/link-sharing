@@ -9,10 +9,8 @@ export const metadata = {
   title: 'Home | Link-Sharing',
 };
 
-interface Props { }
-
-const Page: NextPage<Props> = async ({ }) => {
-  const session: any = await getServerSession()
+const Page: NextPage = async ({ }) => {
+  const session = await getServerSession()
 
   if (!session?.user?.name) {
     redirect('/signin');

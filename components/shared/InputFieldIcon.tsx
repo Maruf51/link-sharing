@@ -1,16 +1,11 @@
+import { InputFieldDataTypes } from '@/types/types'
 import { NextPage } from 'next'
 import { FaLink } from 'react-icons/fa'
 
 interface Props {
-    data: {
-        label: string,
-        name: string,
-        type: string,
-        placeholder: string,
-        value: string
-    },
+    data: InputFieldDataTypes,
     required?: boolean,
-    onChangeHandler: (e: any) => void
+    onChangeHandler: (e) => void
 }
 
 const InputFieldIcon: NextPage<Props> = ({ data, required, onChangeHandler }) => {

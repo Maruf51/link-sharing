@@ -36,7 +36,7 @@ const signin_form_data = [
     },
 ];
 
-const platforms: any = {
+const platforms = {
     all: ['github', 'linkedin', 'youtube', 'facebook', 'instagram'],
     github: {
         name: 'GitHub',

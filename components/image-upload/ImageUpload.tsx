@@ -20,14 +20,14 @@ const authenticator = async () => {
         const data = await response.json();
         const { signature, expire, token } = data;
         return { signature, expire, token };
-    } catch (error: any) {
+    } catch (error) {
         throw new Error(`Authentication request failed: ${error.message}`);
     }
 };
 
 interface Props {
-    setImage: any,
-    setImageUploading: any,
+    setImage: (e: string) => void,
+    setImageUploading: (e: boolean) => void,
     email: string,
     image: string | null
 }
@@ -35,22 +35,22 @@ interface Props {
 const ImageUpload = ({ setImage, setImageUploading, email, image }: Props) => {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploading, setUploading] = useState(false);
-    const [imageName, setImageName]: any = useState(null);
+    const [imageName, setImageName] = useState(null);
 
-    const onError = (err: any) => {
+    const onError = (err) => {
         setUploading(false)
         setImageUploading(false)
         console.log("Error", err);
         toast.error(err.message);
     };
 
-    const onSuccess = (res: any) => {
+    const onSuccess = (res) => {
         setUploading(false)
         setImageUploading(false)
         setImage(res.url)
     };
 
-    const progress = (e: any) => {
+    const progress = (e) => {
         const uploaded = (e.loaded / e.total) * 100;
         setUploadProgress(uploaded);
     };

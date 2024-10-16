@@ -2,13 +2,11 @@
 
 import { UserTypes } from '@/types/types'
 import { NextPage } from 'next'
-import PrimaryButton from '../PrimaryButton'
-import { FaBookmark, FaRegBookmark, FaRegCopy } from 'react-icons/fa'
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
 import Image from 'next/image'
 import userImage from '@/images/user.png'
 import { twMerge } from 'tailwind-merge'
 import LinkView from '../LinkView'
-import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import ViewNavbar from './view-navbar/ViewNavbar'
 import { useEffect, useState } from 'react'
@@ -23,8 +21,6 @@ interface Props {
 
 
 const ViewLinks: NextPage<Props> = ({ userData, username, success }) => {
-  const router = useRouter()
-
   const [saved, setSaved] = useState<boolean>(false)
 
   useEffect(() => {

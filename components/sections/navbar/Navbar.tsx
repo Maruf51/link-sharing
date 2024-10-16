@@ -12,7 +12,7 @@ import { UserTypes } from '@/types/types'
 
 interface Props {
     selectedSection: string,
-    setSelectedSection: (e: any) => void,
+    setSelectedSection: (e: string) => void,
     userData: UserTypes,
 }
 

@@ -11,10 +11,10 @@ import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import logo from '@/images/connect.png'
+import { InputFieldDataTypes } from '@/types/types'
 
-interface Props { }
 
-const RegisterForm: NextPage<Props> = ({ }) => {
+const RegisterForm: NextPage = ({ }) => {
     const router = useRouter()
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -39,7 +39,7 @@ const RegisterForm: NextPage<Props> = ({ }) => {
                 }
                 setLoading(false)
             }
-        } catch (error: any) {
+        } catch (error) {
             console.log(error.message || 'Internal server error')
         } finally {
             setLoading(false)
@@ -58,7 +58,7 @@ const RegisterForm: NextPage<Props> = ({ }) => {
                     <InputField data={{ name: 'lastname', label: 'Last name', placeholder: 'Last name...', type: 'text', }} />
                 </div>
                 {
-                    register_form_data.map((field: any, index: number) => <InputField key={index} data={field} />)
+                    register_form_data.map((field: InputFieldDataTypes, index: number) => <InputField key={index} data={field} />)
                 }
                 <p>Already have an account? <span className='text-blue-500 hover:underline cursor-pointer' onClick={() => router.push(`signin`)}>Signin</span></p>
                 <PrimaryButton name='Register' disabled={loading} />

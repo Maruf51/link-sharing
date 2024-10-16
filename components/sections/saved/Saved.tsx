@@ -31,7 +31,7 @@ const Saved: NextPage<Props> = ({ username }) => {
         } else {
             setSavedUsers(fetchedSavedUsers)
         }
-    }, [searchValue])
+    }, [searchValue, fetchedSavedUsers])
 
     const fetchUsernames = async () => {
         setLoading(true)
@@ -73,7 +73,7 @@ const Saved: NextPage<Props> = ({ username }) => {
                     !loading && !searchValue && !savedUsers[0] && <p className='w-full text-center my-5'>There is no saved user.</p>
                 }
                 {
-                    searchValue && !savedUsers[0] && <p className='w-full text-center my-5'>There is no saved user with the parameter "{searchValue}".</p>
+                    searchValue && !savedUsers[0] && <p className='w-full text-center my-5'>There is no saved user with the parameter &quot;{searchValue}&quot;.</p>
                 }
                 {
                     !loading && savedUsers[0] && savedUsers.map((user: UserTypes, index: number) => <ViewSavedUser key={index} user={user} reloadData={fetchUsernames} />)

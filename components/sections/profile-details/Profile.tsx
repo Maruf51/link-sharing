@@ -15,7 +15,7 @@ export const metadata = {
 
 interface Props {
   userData: UserTypes,
-  setUserData: (e: any) => void
+  setUserData: (e) => void
 }
 
 const Profile: NextPage<Props> = ({ userData, setUserData }) => {
@@ -30,10 +30,10 @@ const Profile: NextPage<Props> = ({ userData, setUserData }) => {
     })
   }
 
-  const profileFieldHandler = (e: any) => {
+  const profileFieldHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setUserData((prevState: UserTypes) => {
-      const newData: any = { ...prevState }
+      const newData: UserTypes = { ...prevState }
       newData[name] = value
       return newData;
     })

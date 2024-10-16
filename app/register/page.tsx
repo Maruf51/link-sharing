@@ -3,10 +3,9 @@ import { NextPage } from 'next'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
-interface Props { }
 
-const Page: NextPage<Props> = async ({ }) => {
-    const session: any = await getServerSession()
+const Page: NextPage = async ({ }) => {
+    const session = await getServerSession()
 
     if (session?.user?.name) {
         redirect('/home')

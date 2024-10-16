@@ -10,7 +10,7 @@ import PrimaryButton from './PrimaryButton'
 interface Props {
     user: string,
     username: string,
-    setIsModalOpen: (e: any) => void,
+    setIsModalOpen: (e: boolean) => void,
     reloadData: () => void
 }
 
@@ -18,7 +18,7 @@ const DeleteModal: NextPage<Props> = ({ user, username, setIsModalOpen, reloadDa
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
-    const deleteHandler = async (e: any) => {
+    const deleteHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         setLoading(true)

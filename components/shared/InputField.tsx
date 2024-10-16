@@ -1,10 +1,11 @@
+import { InputFieldDataTypes } from '@/types/types'
 import { NextPage } from 'next'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
-    data: any,
+    data: InputFieldDataTypes,
     required?: boolean,
-    onChangeHandler?: (e: any) => void,
+    onChangeHandler?: (e) => void,
     disabled?: boolean,
     className?: string,
     labelClassName?: string,
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const InputField: NextPage<Props> = ({ data, required, onChangeHandler, disabled, className, labelClassName, inputClassName }) => {
-    const { label, name, type, placeholder } = data
+    const { label, name, type, placeholder, defaultValue } = data
     return (
         <div className={twMerge('flex flex-col', className)}>
             <label className={twMerge('text-base col-span-1', labelClassName)} htmlFor={name}>{label}</label>
@@ -23,8 +24,8 @@ const InputField: NextPage<Props> = ({ data, required, onChangeHandler, disabled
                 type={type}
                 placeholder={placeholder}
                 required={required || true}
-                defaultValue={data.defaultValue || ''}
-                onChange={(e: any) => {
+                defaultValue={defaultValue || ''}
+                onChange={(e) => {
                     if (onChangeHandler) {
                         onChangeHandler(e)
                     }

@@ -27,7 +27,7 @@ const ViewNavbar: NextPage<Props> = ({ userData, username, success }) => {
       const linkToCopy = `${base_url}/links/${userData.username}`;
       await navigator.clipboard.writeText(linkToCopy);
       toast.success('Link Copied.');
-    } catch (error: any) {
+    } catch (error) {
       console.log(error?.message || error)
       toast.error('Failed to copy!');
     }

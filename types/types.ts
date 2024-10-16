@@ -1,3 +1,8 @@
+export interface LinkTypes {
+    platform: string;
+    link: string;
+}
+
 export interface UserTypes {
     firstname: string,
     lastname: string,
@@ -6,6 +11,15 @@ export interface UserTypes {
     image: string,
     uid: string,
     access: string,
-    links: any,
+    links: LinkTypes[],
     saved: string[]
+}
+
+export interface InputFieldDataTypes {
+    label: string, 
+    name: string, 
+    type: 'text' | 'password' | 'email' | 'number', 
+    placeholder: string,
+    defaultValue?: string,
+    value?: string
 }

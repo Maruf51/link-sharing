@@ -15,12 +15,8 @@ export async function POST(req: NextRequest) {
         const response = await User.create({ ...body, uid })
 
         return NextResponse.json({ success: true, data: response })
-    } catch (error: any) {
-        if (error.code === 11000) {
-            return NextResponse.json({ success: false, error: 'Username not available.' }, { status: 409 });
-        }
-
-        console.error('Error creating user:', error);
-        return NextResponse.json({ success: false, error: 'An error occurred while creating the user.' }, { status: 500 });
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json({ success: false, error: 'Username not available.' }, { status: 409 });
     }
 }

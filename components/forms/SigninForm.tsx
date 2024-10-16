@@ -10,10 +10,9 @@ import { signIn } from 'next-auth/react'
 import toast from 'react-hot-toast'
 import Image from 'next/image'
 import logo from '@/images/connect.png'
+import { InputFieldDataTypes } from '@/types/types'
 
-interface Props { }
-
-const SigninForm: NextPage<Props> = ({ }) => {
+const SigninForm: NextPage = ({ }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
@@ -43,7 +42,7 @@ const SigninForm: NextPage<Props> = ({ }) => {
       <h1 className='text-2xl font-semibold mt-5'>Sign-in to Link Sharing</h1>
       <form action="submit" onSubmit={handleSignin} className='w-full h-auto flex flex-col gap-2 mt-7'>
         {
-          signin_form_data.map((field: any, index: number) => <InputField key={index} data={field} />)
+          signin_form_data.map((field: InputFieldDataTypes, index: number) => <InputField key={index} data={field} />)
         }
         <p>Don&apos;t have an account? <span className='text-blue-500 hover:underline cursor-pointer' onClick={() => router.push(`register`)}>Register</span></p>
         <PrimaryButton name='Sign in' disabled={loading} />

@@ -1,10 +1,11 @@
 import { platforms } from '@/assets/data'
+import { LinkTypes } from '@/types/types'
 import { NextPage } from 'next'
 import { FaArrowRight } from 'react-icons/fa6'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
-    data: any
+    data: LinkTypes[]
 }
 
 const LinkView: NextPage<Props> = ({ data }) => {
@@ -12,7 +13,7 @@ const LinkView: NextPage<Props> = ({ data }) => {
     return (
         <div className='flex flex-col justify-center gap-2 w-full'>
             {
-                data[0] && data.map((link: any, index: number) => <SingleLink key={index} data={link} />)
+                data[0] && data.map((link: LinkTypes, index: number) => <SingleLink key={index} data={link} />)
             }
         </div>
     )
@@ -22,7 +23,7 @@ export default LinkView
 
 
 interface SingleLinkProps {
-    data: any
+    data: LinkTypes
 }
 
 const SingleLink: NextPage<SingleLinkProps> = ({ data }) => {

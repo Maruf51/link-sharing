@@ -2,7 +2,7 @@
 
 import { NextPage } from 'next'
 import Navbar from '../navbar/Navbar'
-import { UserTypes } from '@/types/types'
+import { LinkTypes, UserTypes } from '@/types/types'
 import { useState } from 'react'
 import Links from '../links/Links'
 import Profile from '../profile-details/Profile'
@@ -15,8 +15,8 @@ interface Props {
 
 const HomeDetails: NextPage<Props> = ({ data }) => {
     const [selectedSection, setSelectedSection] = useState<string>('links')
-    const [addedLinks, setAddedLinks]: any = useState(data.links)
-    const [userData, setUserData] = useState(data)
+    const [addedLinks, setAddedLinks] = useState<LinkTypes[]>(data.links)
+    const [userData, setUserData] = useState<UserTypes>(data)
     return (
         <>
             <Navbar selectedSection={selectedSection} setSelectedSection={setSelectedSection} userData={data} />

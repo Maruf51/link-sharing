@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 interface Props {
     className?: string,
-    name: string | any,
+    name: string | React.ReactNode,
     disabled?: boolean,
     variant?: 'fill' | 'outline',
     handler?: boolean,

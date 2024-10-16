@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ViewSavedUser: NextPage<Props> = ({ user, reloadData }) => {
-    const { firstname, lastname, email, image, links, username } = user
+    const { firstname, lastname, email, image, username } = user
     const router = useRouter()
     const session = useSession()
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
