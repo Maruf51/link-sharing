@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Last name is required']
   },
+  username: {
+    type: String,
+    required: [true, 'Username is required'],
+    unique: true,
+  },
   email: {
     type: String,
     required: [true, 'Email is required']
@@ -29,6 +34,11 @@ const userSchema = new mongoose.Schema({
   links: {
     type: Array,
     required: false
+  },
+  saved: {
+    type: [String],
+    required: false,
+    default: []
   },
   access: {
     type: String,

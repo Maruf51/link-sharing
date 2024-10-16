@@ -8,6 +8,10 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 
+export const metadata = {
+    title: 'Links | Link-Sharing',
+};
+
 interface Props {
     userData: UserTypes,
     addedLinks: any,
@@ -15,7 +19,6 @@ interface Props {
 }
 
 const Links: NextPage<Props> = ({ userData, addedLinks, setAddedLinks }) => {
-    const { links } = userData
     const [platformLists, setPlatformLists] = useState([...platforms.all])
 
 
@@ -63,7 +66,7 @@ const Links: NextPage<Props> = ({ userData, addedLinks, setAddedLinks }) => {
                 }
             </div>
             <div className='border-t border-gray-300 mt-3 md:flex'>
-                <PrimaryButton name='Save' className='my-3 w-full md:w-auto md:px-12 md:ml-auto bg-[#633aff] text-white ' />
+                <PrimaryButton name='Save' className='my-3 w-full md:w-auto md:px-12 md:ml-auto' variant='fill' />
             </div>
         </form>
     )
@@ -89,7 +92,7 @@ const LinkEdit: NextPage<LinkEditProps> = ({ data, serial, setAddedLinks, platfo
 
     const handlePlatformChage = (e: any) => {
         setAddedLinks((prevState: any) => {
-            let newData = [...prevState]
+            const newData = [...prevState]
             const getIndex = newData.findIndex((plt: any) => plt.platform === platform)
             if (getIndex !== -1) {
                 newData[getIndex].platform = e.target.value;
@@ -101,7 +104,7 @@ const LinkEdit: NextPage<LinkEditProps> = ({ data, serial, setAddedLinks, platfo
 
     const handleLinkChange = (e: any) => {
         setAddedLinks((prevState: any) => {
-            let newData = [...prevState]
+            const newData = [...prevState]
             const getIndex = newData.findIndex((plt: any) => plt.platform === platform)
             if (getIndex !== -1) {
                 newData[getIndex].link = e.target.value;

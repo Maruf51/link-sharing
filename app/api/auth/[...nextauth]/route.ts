@@ -1,8 +1,18 @@
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
-// import Credentials from "next-auth/providers/credentials";
 import CredentialsProvider from "next-auth/providers/credentials";
+
+// Define an interface for the credentials
+interface Credentials {
+    username: string;
+    password: string;
+}
+
+// Define a custom error type if needed
+interface CustomError extends Error {
+    statusCode?: number;
+}
 
 const handler = NextAuth({
     providers: [
@@ -10,33 +20,39 @@ const handler = NextAuth({
             name: "Credentials",
 
             credentials: {
-                email: {},
-                password: {},
+                username: { label: "Username", type: "text" },
+                password: { label: "Password", type: "password" },
             },
-            async authorize(credentials: any, req) {
+            async authorize(credentials: Credentials | undefined) {
+                if (!credentials) {
+                    throw new Error('No credentials provided');
+                }
+
                 try {
-                    const { email, password } = credentials
-                    await connectMongoDB()
-                    const response = await User.findOne({ email })
+                    const { username, password } = credentials;
+                    await connectMongoDB();
+                    const response = await User.findOne({ username });
+
                     if (response) {
                         if (password === response.password) {
                             return {
                                 id: response.uid,
-                                name: response.firstname + ' ' + response.lastname,
-                                email: response.email
-                            }
+                                name: response.username,
+                                email: response.email,
+                            };
                         } else {
-                            throw new Error('Provided password is wrong')
+                            throw new Error('Provided password is wrong');
                         }
                     } else {
-                        throw new Error('There is no account with this email')
+                        throw new Error('There is no account with this username');
                     }
-                } catch (error: any) {
-                    return Promise.reject(new Error(error.message)); return null;
+                } catch (error) {
+                    const customError: CustomError = error as CustomError;
+                    return Promise.reject(new Error(customError.message));
                 }
             }
         })
     ]
-})
+});
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

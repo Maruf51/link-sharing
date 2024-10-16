@@ -7,11 +7,10 @@ import { twMerge } from "tailwind-merge";
 
 const publicKey = 'public_oMtSciIGjj/z2sxDOGfO2y4i6zw=';
 const url_endpoint = 'https://ik.imagekit.io/znex04bydzr';
-const base_url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const authenticator = async () => {
     try {
-        const response = await fetch(`${base_url}/api/auth`);
+        const response = await fetch(`/api/auth`);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -29,7 +28,7 @@ const authenticator = async () => {
 interface Props {
     setImage: any,
     setImageUploading: any,
-    email: String,
+    email: string,
     image: string | null
 }
 
@@ -42,7 +41,7 @@ const ImageUpload = ({ setImage, setImageUploading, email, image }: Props) => {
         setUploading(false)
         setImageUploading(false)
         console.log("Error", err);
-        toast.error("Error", err);
+        toast.error(err.message);
     };
 
     const onSuccess = (res: any) => {
@@ -68,15 +67,15 @@ const ImageUpload = ({ setImage, setImageUploading, email, image }: Props) => {
         <>
             <ImageKitProvider publicKey={publicKey} urlEndpoint={url_endpoint} authenticator={authenticator}>
                 <label
-                    className={twMerge(`relative w-full px-3 py-2 mt-1 bg-green-400 dark:bg-green-400 rounded-sm cursor-pointer text-white dark:text-black truncate`)}
+                    className={twMerge(`relative w-full px-3 py-2 mt-1 bg-[#633affad] rounded-md cursor-pointer text-white truncate`)}
                     htmlFor="image"
                 >
                     <span
-                        className={`absolute h-1 bg-green-600 dark:bg-green-600 bottom-0 left-0`}
+                        className={`absolute h-1 bg-[#633aff] bottom-0 left-0`}
                         style={{ width: `${uploadProgress}%`, transition: 'width 0.2s ease' }} // Dynamic width
                     />
                     {
-                        uploading ? 'Uploading Image...' : (image && imageName ? imageName : 'Select an image')
+                        uploading ? 'Uploading Image...' : (image && imageName ? imageName : 'Change image')
                     }
                 </label>
                 <IKUpload

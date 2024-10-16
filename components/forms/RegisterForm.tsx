@@ -30,7 +30,7 @@ const RegisterForm: NextPage<Props> = ({ }) => {
             if (result.error) {
                 throw new Error(result.error)
             } else {
-                const response = await signIn('credentials', { email: data.email, password: data.password, redirect: false })
+                const response = await signIn('credentials', { username: data.username, password: data.password, redirect: false })
                 if (response?.error) {
                     toast.error(response.error)
                     setLoading(false)
@@ -53,6 +53,10 @@ const RegisterForm: NextPage<Props> = ({ }) => {
             </div>
             <h1 className='text-2xl font-semibold mt-5'>Register to Link Sharing</h1>
             <form action="submit" onSubmit={handleRegister} className='w-full h-auto flex flex-col gap-2 mt-7'>
+                <div className='gap-2 grid grid-cols-2'>
+                    <InputField data={{ name: 'firstname', label: 'First name', placeholder: 'First name...', type: 'text', }} />
+                    <InputField data={{ name: 'lastname', label: 'Last name', placeholder: 'Last name...', type: 'text', }} />
+                </div>
                 {
                     register_form_data.map((field: any, index: number) => <InputField key={index} data={field} />)
                 }

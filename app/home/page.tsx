@@ -5,16 +5,23 @@ import { redirect } from 'next/navigation'
 
 const base_url = process.env.BASE_URL
 
+export const metadata = {
+  title: 'Home | Link-Sharing',
+};
+
 interface Props { }
 
 const Page: NextPage<Props> = async ({ }) => {
   const session: any = await getServerSession()
 
-  if (!session?.user?.email) {
+  if (!session?.user?.name) {
     redirect('/signin');
   }
 
-  const response = await fetch(`${base_url}/api/user/get?email=${session?.user?.email}`);
+  const response = await fetch(`${base_url}/api/user/get?username=${session?.user?.name}`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
   const user = await response.json();
 
   if(!user?.success) return <h1>Something went worng. Please reload the page.</h1>

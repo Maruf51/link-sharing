@@ -1,4 +1,3 @@
-import { platforms } from '@/assets/data'
 import { NextPage } from 'next'
 import { FaLink } from 'react-icons/fa'
 

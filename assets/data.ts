@@ -2,15 +2,9 @@ import { FaFacebookSquare, FaGithub, FaInstagramSquare, FaLinkedin, FaYoutube } 
 
 const register_form_data = [
     {
-        name: 'firstname',
-        label: 'First name',
-        placeholder: 'First name...',
-        type: 'text',
-    },
-    {
-        name: 'lastname',
-        label: 'Last name',
-        placeholder: 'Last name...',
+        name: 'username',
+        label: 'Username (unique)',
+        placeholder: 'Username...',
         type: 'text',
     },
     {
@@ -29,10 +23,10 @@ const register_form_data = [
 
 const signin_form_data = [
     {
-        name: 'email',
-        label: 'Email',
-        placeholder: 'Email...',
-        type: 'email',
+        name: 'username',
+        label: 'Username',
+        placeholder: 'Username...',
+        type: 'text',
     },
     {
         name: 'password',

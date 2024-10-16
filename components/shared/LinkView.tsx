@@ -10,7 +10,7 @@ interface Props {
 const LinkView: NextPage<Props> = ({ data }) => {
 
     return (
-        <div className='flex flex-col justify-center gap-2.5'>
+        <div className='flex flex-col justify-center gap-2 w-full'>
             {
                 data[0] && data.map((link: any, index: number) => <SingleLink key={index} data={link} />)
             }
@@ -32,7 +32,7 @@ const SingleLink: NextPage<SingleLinkProps> = ({ data }) => {
 
     const Icon = icon
     return (
-        <a href={link} target='_blank' style={{ background: color }} className={twMerge('flex items-center gap-2 text-white px-3 py-2 rounded-md text-sm cursor-pointer')}>
+        <a href={link} target='_blank' style={{ background: color }} className={twMerge('w-full flex items-center gap-2 text-white px-3 py-3 md:py-2.5 rounded-md text-sm cursor-pointer')}>
             <Icon />
             <h2>{name}</h2>
             <FaArrowRight className='ml-auto duration-300' />

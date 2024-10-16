@@ -45,7 +45,7 @@ const SigninForm: NextPage<Props> = ({ }) => {
         {
           signin_form_data.map((field: any, index: number) => <InputField key={index} data={field} />)
         }
-        <p>Don't have an account? <span className='text-blue-500 hover:underline cursor-pointer' onClick={() => router.push(`register`)}>Register</span></p>
+        <p>Don&apos;t have an account? <span className='text-blue-500 hover:underline cursor-pointer' onClick={() => router.push(`register`)}>Register</span></p>
         <PrimaryButton name='Sign in' disabled={loading} />
       </form>
     </div>

@@ -1,9 +1,11 @@
 export interface UserTypes {
-    firstname: String,
-    lastname: String,
-    email: String,
+    firstname: string,
+    lastname: string,
+    username: string,
+    email: string,
     image: string,
     uid: string,
-    access: String,
-    links: any
+    access: string,
+    links: any,
+    saved: string[]
 }

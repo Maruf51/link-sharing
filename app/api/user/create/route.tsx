@@ -7,14 +7,20 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const uid = randomUUID()
 
-    await connectMongoDB();
 
-    const exists = await User.findOne({ email: body.email })
-    if (exists) {
-        return NextResponse.json({ success: false, error: 'Account already exists with this email.' })
-    } else {
+    try {
+
+        await connectMongoDB();
+
         const response = await User.create({ ...body, uid })
-        
+
         return NextResponse.json({ success: true, data: response })
+    } catch (error: any) {
+        if (error.code === 11000) {
+            return NextResponse.json({ success: false, error: 'Username not available.' }, { status: 409 });
+        }
+
+        console.error('Error creating user:', error);
+        return NextResponse.json({ success: false, error: 'An error occurred while creating the user.' }, { status: 500 });
     }
 }

@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 const privateKey: string = process.env.IMAGEKIT_PRIVATE_KEY || 'private_ISvM6qaaDBDRWI/ghLkbGWuC22Q=' || '';
 
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get('token') || crypto.randomUUID();
   const expire = searchParams.get('expire') || (Math.floor(Date.now() / 1000) + 2400).toString();
