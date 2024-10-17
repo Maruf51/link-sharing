@@ -20,7 +20,7 @@ const Navbar: NextPage<Props> = ({ selectedSection, setSelectedSection, userData
 
     const router = useRouter()
     return (
-        <nav className='py-5 flex justify-between flex-1'>
+        <nav className='py-5 flex justify-between flex-1 select-none'>
             <div className='flex items-center gap-2'>
                 <div className='bg-[#643bff] w-9 sm:w-7 h-9 sm:h-7 p-0.5 rounded-md overflow-hidden'>
                     <Image width={50} height={50} src={logo} alt='logo' />

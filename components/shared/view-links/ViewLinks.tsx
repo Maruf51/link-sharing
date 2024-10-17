@@ -11,6 +11,8 @@ import toast from 'react-hot-toast'
 import ViewNavbar from './view-navbar/ViewNavbar'
 import { useEffect, useState } from 'react'
 import fetchHandler from '@/components/fetchHandler'
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 
 interface Props {
@@ -22,6 +24,9 @@ interface Props {
 
 const ViewLinks: NextPage<Props> = ({ userData, username, success }) => {
   const [saved, setSaved] = useState<boolean>(false)
+  const { data: session } = useSession()
+  const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,18 +40,25 @@ const ViewLinks: NextPage<Props> = ({ userData, username, success }) => {
 
   const saveHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (saved) {
-      const response = await fetchHandler({ route: `user/update-saved`, method: 'POST', data: { user: username, action: 'remove', username: userData.username } })
-      if (response.success) {
-        toast.success('Profile removed')
-        setSaved(false)
+    if (!loading && session?.user?.name) {
+      setLoading(true)
+      if (saved) {
+        const response = await fetchHandler({ route: `user/update-saved`, method: 'POST', data: { user: username, action: 'remove', username: userData.username } })
+        if (response.success) {
+          toast.success('Profile removed')
+          setSaved(false)
+          setLoading(false)
+        }
+      } else {
+        const response = await fetchHandler({ route: `user/update-saved`, method: 'POST', data: { user: username, action: 'save', username: userData.username } })
+        if (response.success) {
+          toast.success('Profile saved')
+          setSaved(true)
+          setLoading(false)
+        }
       }
     } else {
-      const response = await fetchHandler({ route: `user/update-saved`, method: 'POST', data: { user: username, action: 'save', username: userData.username } })
-      if (response.success) {
-        toast.success('Profile saved')
-        setSaved(true)
-      }
+      router.push('/signin')
     }
   }
   return (
